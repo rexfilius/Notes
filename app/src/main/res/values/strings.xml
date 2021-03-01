@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PriorityNotes</string>
+    <string name="button_new_note">Button to add a new note</string>
 </resources>

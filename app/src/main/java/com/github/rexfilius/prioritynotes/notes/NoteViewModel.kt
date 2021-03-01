@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes
+package com.github.rexfilius.prioritynotes.notes
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -14,25 +14,25 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insertNote(note: Note) {
         viewModelScope.launch {
-            noteRepository.insertNote(note)
+            noteRepository.insertInDB(note)
         }
     }
 
     fun deleteNote(note: Note) {
         viewModelScope.launch {
-            noteRepository.deleteNote(note)
+            noteRepository.deleteInDB(note)
         }
     }
 
     fun updateNote(note: Note) {
         viewModelScope.launch {
-            noteRepository.updateNote(note)
+            noteRepository.updateInDB(note)
         }
     }
 
     fun deleteAllNotes() {
         viewModelScope.launch {
-            noteRepository.deleteAllNotes()
+            noteRepository.deleteAllInDB()
         }
     }
 
