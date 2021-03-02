@@ -36,5 +36,5 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getALlNotes() = noteRepository.getAllNotes()
+    fun getAllNotes() = noteRepository.getAllNotes()
 }

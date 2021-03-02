@@ -29,14 +29,14 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="Title" />
+            tools:text="@string/note_title" />
 
         <TextView
             android:id="@+id/txtViewDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtViewTitle"
-            tools:text="Description" />
+            tools:text="@string/note_description" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

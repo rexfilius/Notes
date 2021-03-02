@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PriorityNotes">
+        <activity android:name=".addeditnote.AddEditNoteActivity"></activity>
         <activity android:name=".notes.NoteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
