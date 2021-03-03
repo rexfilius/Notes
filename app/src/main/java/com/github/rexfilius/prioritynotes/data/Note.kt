@@ -9,9 +9,12 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "notes")
 data class Note(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
     var title: String,
+
     var description: String,
-    var priority: Int
+
+    var priority: Int,
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0
 )

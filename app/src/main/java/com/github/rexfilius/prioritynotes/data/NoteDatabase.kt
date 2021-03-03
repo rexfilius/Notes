@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
  * NOTE: whenever you change the schema, you have to increase the version number,
  * and set exportSchema to false so as  not to keep schema version history backups
  */
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+@Database(entities = [Note::class], version = 4, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract val noteDao: NoteDao

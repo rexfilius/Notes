@@ -3,6 +3,7 @@ package com.github.rexfilius.prioritynotes.notes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -18,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class NoteActivity : AppCompatActivity() {
 
     private val noteViewModel: NoteViewModel by viewModels()
+    val TAG = "NoteActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +47,14 @@ class NoteActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            val title = data?.getStringExtra(EXTRA_TITLE)
-            val description = data?.getStringExtra(EXTRA_DESCRIPTION)
-            val priority = data?.getIntExtra(EXTRA_PRIORITY, 1)
 
-            // create note
-            // viewModel.insert(note)
+            val title = data!!.getStringExtra(EXTRA_TITLE).toString()
+            val description = data.getStringExtra(EXTRA_DESCRIPTION).toString()
+            val priority = data.getIntExtra(EXTRA_PRIORITY, 1)
+
+            val note = Note(title, description, priority)
+            noteViewModel.insertNote(note)
             Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
 
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
@@ -61,14 +63,15 @@ class NoteActivity : AppCompatActivity() {
                 Toast.makeText(this, "Note can't be updated", Toast.LENGTH_SHORT).show()
             }
 
-            val title = data?.getStringExtra(EXTRA_TITLE)
-            val description = data?.getStringExtra(EXTRA_DESCRIPTION)
-            val priority = data?.getIntExtra(EXTRA_PRIORITY, 1)
+            val title = data!!.getStringExtra(EXTRA_TITLE).toString()
+            val description = data.getStringExtra(EXTRA_DESCRIPTION).toString()
+            val priority = data.getIntExtra(EXTRA_PRIORITY, 1)
 
-            // create Note
+            val note = Note(title, description, priority)
             // note.setId(id)
-            // viewModel.update(note)
+            noteViewModel.updateNote(note)
             Toast.makeText(this, "Note updated", Toast.LENGTH_SHORT).show()
+
         } else {
             Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
         }
