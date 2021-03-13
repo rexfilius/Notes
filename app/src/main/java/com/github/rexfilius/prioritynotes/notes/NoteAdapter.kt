@@ -14,7 +14,7 @@ class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteViewHolder>(DIFF_UTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val itemView: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.note_item, parent, false)
+            .inflate(R.layout.fragment_notes_item, parent, false)
         return NoteViewHolder(itemView)
     }
 

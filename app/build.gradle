@@ -43,12 +43,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // Fragments, Navigation, Fragments Testing, Navigation Testing
-    implementation 'androidx.fragment:fragment-ktx:1.3.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
+    implementation 'androidx.fragment:fragment-ktx:1.3.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    androidTestImplementation 'androidx.fragment:fragment-testing:1.3.0'
-    androidTestImplementation 'androidx.navigation:navigation-testing:2.3.3'
+    androidTestImplementation 'androidx.fragment:fragment-testing:1.3.1'
+    androidTestImplementation 'androidx.navigation:navigation-testing:2.3.4'
 
     // CardView & RecyclerView
     implementation 'androidx.cardview:cardview:1.0.0'
