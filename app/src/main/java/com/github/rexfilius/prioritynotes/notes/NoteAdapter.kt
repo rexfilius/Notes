@@ -12,6 +12,8 @@ import com.github.rexfilius.prioritynotes.data.Note
 
 class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteViewHolder>(DIFF_UTIL) {
 
+    private var itemClickListener: OnItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val itemView: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_notes_item, parent, false)
@@ -25,14 +27,19 @@ class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteViewHolder>(DIFF_UTIL) {
         holder.textViewDescription.text = currentNote.description
     }
 
-    fun getNoteAt(position: Int): Note {
-        return getItem(position)
-    }
-
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewPriority: TextView = itemView.findViewById(R.id.txtViewPriority)
         val textViewTitle: TextView = itemView.findViewById(R.id.txtViewTitle)
         val textViewDescription: TextView = itemView.findViewById(R.id.txtViewDescription)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (itemClickListener != null && position != RecyclerView.NO_POSITION) {
+                    itemClickListener?.onItemClick(getItem(position))
+                }
+            }
+        }
     }
 
     companion object {
@@ -50,5 +57,16 @@ class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteViewHolder>(DIFF_UTIL) {
             }
     }
 
+    fun getNoteAt(position: Int): Note {
+        return getItem(position)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(note: Note)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
+    }
 
 }

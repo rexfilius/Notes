@@ -5,11 +5,13 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.rexfilius.prioritynotes.R
+import com.github.rexfilius.prioritynotes.data.Note
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NotesFragment : Fragment() {
@@ -18,8 +20,8 @@ class NotesFragment : Fragment() {
     private lateinit var noteRecyclerView: RecyclerView
 
     private val viewModel: NotesViewModel by viewModels()
-    lateinit var itemTouchHelper: ItemTouchHelper
-    lateinit var noteAdapter: NoteAdapter
+    private lateinit var itemTouchHelper: ItemTouchHelper
+    private lateinit var noteAdapter: NoteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +59,14 @@ class NotesFragment : Fragment() {
         // when notes are displayed in this fragment, and a note is clicked,
         // get id of the note and pass as argument to the AddEditNote fragment,
         // so that the note can be edited and updated
+        noteAdapter.setOnItemClickListener(object : NoteAdapter.OnItemClickListener {
+            override fun onItemClick(note: Note) {
+                //
+                activity?.findNavController(R.id.noteRecyclerView)?.navigate(
+                    NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment()
+                )
+            }
+        })
 
         return view
     }
