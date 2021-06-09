@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".notes.NotesFragment">
+    tools:context=".notes.NoteFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noteRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/fragment_notes_item" />
+        tools:listitem="@layout/notes_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddNote"
+        android:id="@+id/noteFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

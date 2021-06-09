@@ -13,7 +13,7 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/txtViewPriority"
+            android:id="@+id/noteItemPriority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -21,21 +21,21 @@
             tools:text="1" />
 
         <TextView
-            android:id="@+id/txtViewTitle"
+            android:id="@+id/noteItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/txtViewPriority"
+            android:layout_toStartOf="@id/noteItemPriority"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="@string/note_title" />
 
         <TextView
-            android:id="@+id/txtViewDescription"
+            android:id="@+id/noteItemDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtViewTitle"
+            android:layout_below="@id/noteItemTitle"
             tools:text="@string/note_description" />
     </RelativeLayout>
 
