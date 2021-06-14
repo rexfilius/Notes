@@ -20,10 +20,9 @@ import com.github.rexfilius.prioritynotes.databinding.NotesBinding
 class NoteFragment : Fragment(R.layout.notes) {
 
     private val viewModel: NoteViewModel by viewModels()
-    private lateinit var itemTouchHelper: ItemTouchHelper
     private lateinit var noteAdapter: NoteAdapter
-
     private var notesBinding: NotesBinding? = null
+    // private lateinit var itemTouchHelper: ItemTouchHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +46,7 @@ class NoteFragment : Fragment(R.layout.notes) {
 
         binding.noteFAB.setOnClickListener {
             this.findNavController().navigate(
-                NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(0)
+                NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment()
             )
         }
 
@@ -55,7 +54,7 @@ class NoteFragment : Fragment(R.layout.notes) {
         setHasOptionsMenu(true)
 
         // function to delete a note with a swipe action
-        itemTouchHelper().attachToRecyclerView(binding.noteRecyclerView)
+        // itemTouchHelper().attachToRecyclerView(binding.noteRecyclerView)
     }
 
     override fun onDestroyView() {
@@ -89,7 +88,12 @@ class NoteFragment : Fragment(R.layout.notes) {
         // activity?.findNavController(R.id.noteRecyclerView).navigate
     }
 
-    private fun itemTouchHelper(): ItemTouchHelper {
+
+
+
+
+
+    /*private fun itemTouchHelper(): ItemTouchHelper {
         itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             0,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -109,7 +113,7 @@ class NoteFragment : Fragment(R.layout.notes) {
 
         })
         return itemTouchHelper
-    }
+    }*/
 
 
 }

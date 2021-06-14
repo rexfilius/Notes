@@ -17,6 +17,8 @@ class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
     private var addEditBinding: AddEditNoteBinding? = null
     private val args: AddEditNoteFragmentArgs by navArgs()
 
+    lateinit var note: Note
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = AddEditNoteBinding.bind(view)
@@ -49,35 +51,35 @@ class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
         return when (item.itemId) {
 
             R.id.menu_save_note -> {
-                // TODO:
                 // if note is new - insert note in database
                 // if note isn't new - update note in database
                 // after insert or update note; navigate to NoteFragment
-                // NOTE: So the insert and update function is working
+                // ISSUE: So the insert and update function is working
                 // the next problem is to find out why the note title and description
-                // does not show when it is clicked from the NoteFragment,
+                // does not show when a note is clicked from the NoteFragment,
                 // and the funny thing is that the clicked note is updated
                 if (args.noteID == 0) {
-                    val note = addEditBinding?.addEditNotePriority?.value?.let {
+                    note = addEditBinding?.addEditNotePriority?.value?.let {
                         Note(
                             title = addEditBinding?.addEditNoteTitle?.text.toString(),
                             description = addEditBinding?.addEditNoteDescription?.text.toString(),
                             priority = it
                         )
-                    }
-                    viewModel.insertNote(note!!)
+                    }!!
+                    viewModel.insertNote(note)
                     Toast.makeText(activity, "Note saved", Toast.LENGTH_LONG).show()
                 } else {
                     val id = args.noteID
-                    val note = addEditBinding?.addEditNotePriority?.value?.let {
+                    val title = args.noteTitle
+                    note = addEditBinding?.addEditNotePriority?.value?.let {
                         Note(
-                            title = addEditBinding?.addEditNoteTitle?.text.toString(),
+                            title = title,
                             description = addEditBinding?.addEditNoteDescription?.text.toString(),
                             priority = it,
                             id = id.toLong()
                         )
-                    }
-                    viewModel.updateNote(note!!)
+                    }!!
+                    viewModel.updateNote(note)
                     Toast.makeText(activity, "Note updated", Toast.LENGTH_LONG).show()
                 }
                 this.findNavController().navigate(

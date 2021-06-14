@@ -25,7 +25,12 @@
             app:destination="@id/notesFragment" />
         <argument
             android:name="noteID"
+            android:defaultValue="0"
             app:argType="integer" />
+        <argument
+            android:name="noteTitle"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 
 </navigation>
