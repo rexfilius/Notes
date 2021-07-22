@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes.notes
+package com.github.rexfilius.prioritynotes.ui.notes
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,12 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.github.rexfilius.prioritynotes.R
-import com.github.rexfilius.prioritynotes.data.Note
+import com.github.rexfilius.prioritynotes.data.model.Note
 import com.github.rexfilius.prioritynotes.databinding.NotesBinding
 
 class NoteFragment : Fragment(R.layout.notes) {
@@ -85,7 +82,6 @@ class NoteFragment : Fragment(R.layout.notes) {
         this.findNavController().navigate(
             NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(note.id.toInt())
         )
-        // activity?.findNavController(R.id.noteRecyclerView).navigate
     }
 
 

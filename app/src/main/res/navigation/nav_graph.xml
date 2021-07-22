@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.github.rexfilius.prioritynotes.notes.NoteFragment"
+        android:name="com.github.rexfilius.prioritynotes.ui.notes.NoteFragment"
         android:label="fragment_notes"
         tools:layout="@layout/notes">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/addEditNoteFragment"
-        android:name="com.github.rexfilius.prioritynotes.addeditnote.AddEditNoteFragment"
+        android:name="com.github.rexfilius.prioritynotes.ui.addeditnote.AddEditNoteFragment"
         android:label="add_edit_note_fragment"
         tools:layout="@layout/add_edit_note">
         <action
@@ -27,10 +27,6 @@
             android:name="noteID"
             android:defaultValue="0"
             app:argType="integer" />
-        <argument
-            android:name="noteTitle"
-            android:defaultValue=""
-            app:argType="string" />
     </fragment>
 
 </navigation>
