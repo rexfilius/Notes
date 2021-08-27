@@ -29,6 +29,7 @@ class NoteFragment : Fragment(R.layout.notes) {
         noteAdapter = NoteAdapter {
             noteAdapterOnClick(it)
         }
+        //val s = NoteAdapter(::noteAdapterOnClick)
 
         viewModel.getAllNotes().observe(viewLifecycleOwner, {
             noteAdapter.submitList(it)

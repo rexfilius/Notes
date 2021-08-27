@@ -74,9 +74,10 @@ class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
                     val noteId = args.noteID
 
                     viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, {
-                        addEditBinding?.addEditNotePriorityTitle?.text = it.title
-                        addEditBinding?.addEditNoteDescription?.setText(it.description)
-                        addEditBinding?.addEditNotePriority?.value = it.priority
+//                        addEditBinding?.addEditNotePriorityTitle?.text = it.title
+//                        addEditBinding?.addEditNoteDescription?.setText(it.description)
+//                        addEditBinding?.addEditNotePriority?.value = it.priority
+                        populateAddEditNoteDetails(it)
                         viewModel.updateNote(it)
                     })
 
@@ -90,6 +91,12 @@ class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun populateAddEditNoteDetails(note: Note) {
+        addEditBinding?.addEditNoteTitle?.setText(note.title)
+        addEditBinding?.addEditNoteDescription?.setText(note.description)
+        addEditBinding?.addEditNotePriority?.value = note.priority
     }
 
 }
