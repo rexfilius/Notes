@@ -9,7 +9,7 @@
         android:id="@+id/notesFragment"
         android:name="com.github.rexfilius.prioritynotes.ui.notes.NoteFragment"
         android:label="@string/notes"
-        tools:layout="@layout/notes">
+        tools:layout="@layout/fragment_note">
         <action
             android:id="@+id/action_notesFragment_to_addEditNoteFragment"
             app:destination="@id/addEditNoteFragment" />
@@ -19,7 +19,7 @@
         android:id="@+id/addEditNoteFragment"
         android:name="com.github.rexfilius.prioritynotes.ui.addeditnote.AddEditNoteFragment"
         android:label="@string/add_edit"
-        tools:layout="@layout/add_edit_note">
+        tools:layout="@layout/fragment_add_edit_note">
         <action
             android:id="@+id/action_addEditNoteFragment_to_notesFragment"
             app:destination="@id/notesFragment" />

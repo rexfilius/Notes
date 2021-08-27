@@ -35,4 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <!--HorizontalNumberPicker: github library-->
+    <!--https://github.com/blazsolar/HorizontalPicker-->
+
+    <!--HorizontalNumberPicker: stackOverflow-->
+    <!--https://stackoverflow.com/questions/6796243/is-it-possible-to-make-a-horizontal-numberpicker-->
+
 </LinearLayout>

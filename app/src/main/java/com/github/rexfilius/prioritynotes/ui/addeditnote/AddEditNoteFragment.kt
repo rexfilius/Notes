@@ -2,34 +2,42 @@ package com.github.rexfilius.prioritynotes.ui.addeditnote
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.rexfilius.prioritynotes.R
 import com.github.rexfilius.prioritynotes.data.model.Note
-import com.github.rexfilius.prioritynotes.databinding.AddEditNoteBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.github.rexfilius.prioritynotes.databinding.FragmentAddEditNoteBinding
+import com.github.rexfilius.prioritynotes.util.Constants.SAVE_NOTE
+import com.github.rexfilius.prioritynotes.util.Constants.UPDATE_NOTE
+import com.github.rexfilius.prioritynotes.util.toast
 
-class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
+class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
 
     private val viewModel: AddEditNoteViewModel by viewModels()
-    private var addEditBinding: AddEditNoteBinding? = null
+    private var addEditBinding: FragmentAddEditNoteBinding? = null
     private val args: AddEditNoteFragmentArgs by navArgs()
-
-    //lateinit var note: Note
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = AddEditNoteBinding.bind(view)
+        val binding = FragmentAddEditNoteBinding.bind(view)
         addEditBinding = binding
 
         binding.addEditNotePriority.apply {
             minValue = 1
             maxValue = 10
         }
+
+        val noteId = args.noteID
+
+        viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, { note: Note? ->
+            if (note != null) {
+                binding.addEditNoteTitle.setText(note.title)
+                binding.addEditNoteDescription.setText(note.description)
+                binding.addEditNotePriority.value = note.priority
+            }
+        })
 
         // TODO:
         // set icon of app bar back-button in this fragment to R.drawable.ic_close
@@ -53,36 +61,31 @@ class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
         return when (item.itemId) {
 
             R.id.menu_save_note -> {
-                // if note is new - insert note in database
-                // if note isn't new - update note in database
-                // after insert or update note; navigate to NoteFragment
-                // ISSUE: So the insert and update function is working
-                // the next problem is to find out why the note title and description
-                // does not show when a note is clicked from the NoteFragment,
-                // and the funny thing is that the clicked note is updated
+                // ISSUE: the clicked note does not update on the NoteFragment
+                // after it has been updated
                 if (args.noteID == 0) {
-                    val note = addEditBinding?.addEditNotePriority?.value?.let {
-                        Note(
-                            title = addEditBinding?.addEditNoteTitle?.text.toString(),
-                            description = addEditBinding?.addEditNoteDescription?.text.toString(),
-                            priority = it
-                        )
-                    }!!
+                    val note = Note(
+                        title = addEditBinding?.addEditNoteTitle?.text.toString(),
+                        description = addEditBinding?.addEditNoteDescription?.text.toString(),
+                        priority = addEditBinding?.addEditNotePriority?.value!!
+                    )
+
                     viewModel.insertNote(note)
-                    Toast.makeText(activity, "Note saved", Toast.LENGTH_LONG).show()
+                    SAVE_NOTE.toast(requireContext())
                 } else {
                     val noteId = args.noteID
 
-                    viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, {
-//                        addEditBinding?.addEditNotePriorityTitle?.text = it.title
-//                        addEditBinding?.addEditNoteDescription?.setText(it.description)
-//                        addEditBinding?.addEditNotePriority?.value = it.priority
-                        populateAddEditNoteDetails(it)
-                        viewModel.updateNote(it)
+                    viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, { note: Note? ->
+                        if (note != null) {
+                            addEditBinding?.addEditNoteTitle?.setText(note.title)
+                            addEditBinding?.addEditNoteDescription?.setText(note.description)
+                            addEditBinding?.addEditNotePriority?.value = note.priority
+                            viewModel.updateNote(note)
+                        }
                     })
-
-                    Toast.makeText(activity, "Note updated", Toast.LENGTH_LONG).show()
+                    UPDATE_NOTE.toast(requireContext())
                 }
+
                 this.findNavController().navigate(
                     AddEditNoteFragmentDirections.actionAddEditNoteFragmentToNotesFragment()
                 )
@@ -91,12 +94,6 @@ class AddEditNoteFragment : Fragment(R.layout.add_edit_note) {
 
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun populateAddEditNoteDetails(note: Note) {
-        addEditBinding?.addEditNoteTitle?.setText(note.title)
-        addEditBinding?.addEditNoteDescription?.setText(note.description)
-        addEditBinding?.addEditNotePriority?.value = note.priority
     }
 
 }

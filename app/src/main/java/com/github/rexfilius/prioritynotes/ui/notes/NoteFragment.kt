@@ -5,26 +5,27 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.rexfilius.prioritynotes.R
 import com.github.rexfilius.prioritynotes.data.model.Note
-import com.github.rexfilius.prioritynotes.databinding.NotesBinding
+import com.github.rexfilius.prioritynotes.databinding.FragmentNoteBinding
+import com.github.rexfilius.prioritynotes.util.Constants.DELETE_NOTE
+import com.github.rexfilius.prioritynotes.util.toast
 
-class NoteFragment : Fragment(R.layout.notes) {
+class NoteFragment : Fragment(R.layout.fragment_note) {
 
     private val viewModel: NoteViewModel by viewModels()
     private lateinit var noteAdapter: NoteAdapter
-    private var notesBinding: NotesBinding? = null
+    private var noteBinding: FragmentNoteBinding? = null
     // private lateinit var itemTouchHelper: ItemTouchHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = NotesBinding.bind(view)
-        notesBinding = binding
+        val binding = FragmentNoteBinding.bind(view)
+        noteBinding = binding
 
         noteAdapter = NoteAdapter {
             noteAdapterOnClick(it)
@@ -56,7 +57,7 @@ class NoteFragment : Fragment(R.layout.notes) {
     }
 
     override fun onDestroyView() {
-        notesBinding = null
+        noteBinding = null
         super.onDestroyView()
     }
 
@@ -68,26 +69,25 @@ class NoteFragment : Fragment(R.layout.notes) {
         return when (item.itemId) {
             R.id.menu_delete_all -> {
                 viewModel.deleteAllNotes()
-                Toast.makeText(activity, "Notes deleted", Toast.LENGTH_SHORT)
+                DELETE_NOTE.toast(requireContext())
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    /**
+     * Notes are displayed in this fragment. When a note is clicked, get ID of the note
+     * and pass as argument to the AddEditNoteFragment, so that the note can be
+     * edited and updated to the database.
+     */
     private fun noteAdapterOnClick(note: Note) {
-        // TODO:
-        // when notes are displayed in this fragment, and a note is clicked,
-        // get id of the note and pass as argument to the AddEditNote fragment,
-        // so that the note can be edited and updated
         this.findNavController().navigate(
-            NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(note.id.toInt())
+            NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
+                note.id.toInt()
+            )
         )
     }
-
-
-
-
 
 
     /*private fun itemTouchHelper(): ItemTouchHelper {
