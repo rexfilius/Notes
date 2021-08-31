@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <Button
+        android:id="@+id/buttonLess"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/editTextNumber"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="0"
+        android:textAlignment="center" />
+
+    <!--android:inputType="number"-->
+
+    <Button
+        android:id="@+id/buttonMore"
+        android:layout_width="0sp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="+" />
+
+</LinearLayout>

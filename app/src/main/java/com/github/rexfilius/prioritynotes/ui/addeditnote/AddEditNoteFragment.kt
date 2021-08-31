@@ -30,7 +30,6 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         }
 
         val noteId = args.noteID
-
         viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, { note: Note? ->
             if (note != null) {
                 binding.addEditNoteTitle.setText(note.title)
@@ -61,28 +60,22 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         return when (item.itemId) {
 
             R.id.menu_save_note -> {
-                // ISSUE: the clicked note does not update on the NoteFragment
-                // after it has been updated
                 if (args.noteID == 0) {
                     val note = Note(
                         title = addEditBinding?.addEditNoteTitle?.text.toString(),
                         description = addEditBinding?.addEditNoteDescription?.text.toString(),
                         priority = addEditBinding?.addEditNotePriority?.value!!
                     )
-
                     viewModel.insertNote(note)
                     SAVE_NOTE.toast(requireContext())
                 } else {
-                    val noteId = args.noteID
-
-                    viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, { note: Note? ->
-                        if (note != null) {
-                            addEditBinding?.addEditNoteTitle?.setText(note.title)
-                            addEditBinding?.addEditNoteDescription?.setText(note.description)
-                            addEditBinding?.addEditNotePriority?.value = note.priority
-                            viewModel.updateNote(note)
-                        }
-                    })
+                    val note = Note(
+                        title = addEditBinding?.addEditNoteTitle?.text.toString(),
+                        description = addEditBinding?.addEditNoteDescription?.text.toString(),
+                        priority = addEditBinding?.addEditNotePriority?.value!!,
+                        id = args.noteID.toLong()
+                    )
+                    viewModel.updateNote(note)
                     UPDATE_NOTE.toast(requireContext())
                 }
 

@@ -34,7 +34,6 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
 
         viewModel.getAllNotes().observe(viewLifecycleOwner, {
             noteAdapter.submitList(it)
-            noteAdapter.notifyDataSetChanged()
         })
 
         binding.noteRecyclerView.apply {
