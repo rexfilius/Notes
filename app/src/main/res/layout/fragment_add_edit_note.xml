@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="8dp"
     tools:context=".ui.addeditnote.AddEditNoteFragment">
 
-    <EditText
-        android:id="@+id/addEditNoteTitle"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addEditNoteTitleLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/note_title"
-        android:inputType="text" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/addEditNoteDescription"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addEditNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addEditNoteDescriptionLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/note_description"
-        android:inputType="textMultiLine" />
+        app:layout_constraintBottom_toTopOf="@id/addEditNotePriority"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addEditNoteTitleLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addEditNoteDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/addEditNotePriorityTitle"
@@ -28,12 +51,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/note_priority"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        app:layout_constraintBottom_toBottomOf="@id/addEditNotePriority"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/addEditNotePriority" />
 
     <NumberPicker
         android:id="@+id/addEditNotePriority"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--HorizontalNumberPicker: github library-->
     <!--https://github.com/blazsolar/HorizontalPicker-->
@@ -41,4 +70,4 @@
     <!--HorizontalNumberPicker: stackOverflow-->
     <!--https://stackoverflow.com/questions/6796243/is-it-possible-to-make-a-horizontal-numberpicker-->
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
