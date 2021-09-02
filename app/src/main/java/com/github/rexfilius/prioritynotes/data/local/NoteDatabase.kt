@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.github.rexfilius.prioritynotes.data.model.Note
+import com.github.rexfilius.prioritynotes.model.Note
 
 /**
  * This class has one method that either creates an instance of the database

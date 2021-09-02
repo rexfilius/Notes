@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.rexfilius.prioritynotes.R
-import com.github.rexfilius.prioritynotes.data.model.Note
+import com.github.rexfilius.prioritynotes.model.Note
 import com.github.rexfilius.prioritynotes.databinding.FragmentNoteBinding
 import com.github.rexfilius.prioritynotes.util.Constants.DELETE_NOTE
 import com.github.rexfilius.prioritynotes.util.toast
@@ -83,7 +83,7 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
     private fun noteAdapterOnClick(note: Note) {
         this.findNavController().navigate(
             NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
-                note.id.toInt()
+                note.id
             )
         )
     }

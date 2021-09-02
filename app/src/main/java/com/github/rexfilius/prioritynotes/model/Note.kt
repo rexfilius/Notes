@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes.data.model
+package com.github.rexfilius.prioritynotes.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

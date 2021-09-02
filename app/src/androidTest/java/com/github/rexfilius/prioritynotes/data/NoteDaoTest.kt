@@ -7,7 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.github.rexfilius.prioritynotes.data.local.NoteDao
 import com.github.rexfilius.prioritynotes.data.local.NoteDatabase
-import com.github.rexfilius.prioritynotes.data.model.Note
+import com.github.rexfilius.prioritynotes.model.Note
 import com.github.rexfilius.prioritynotes.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi

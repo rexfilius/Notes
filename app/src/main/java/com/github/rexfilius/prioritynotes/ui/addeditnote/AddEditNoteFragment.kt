@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.rexfilius.prioritynotes.R
-import com.github.rexfilius.prioritynotes.data.model.Note
+import com.github.rexfilius.prioritynotes.model.Note
 import com.github.rexfilius.prioritynotes.databinding.FragmentAddEditNoteBinding
 import com.github.rexfilius.prioritynotes.util.Constants.SAVE_NOTE
 import com.github.rexfilius.prioritynotes.util.Constants.UPDATE_NOTE
@@ -29,8 +29,7 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
             maxValue = 10
         }
 
-        val noteId = args.noteID
-        viewModel.getANoteById(noteId.toLong()).observe(viewLifecycleOwner, { note: Note? ->
+        viewModel.getNote(args.noteID).observe(viewLifecycleOwner, { note: Note? ->
             if (note != null) {
                 binding.addEditNoteTitle.setText(note.title)
                 binding.addEditNoteDescription.setText(note.description)
@@ -60,7 +59,7 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         return when (item.itemId) {
 
             R.id.menu_save_note -> {
-                if (args.noteID == 0) {
+                if (args.noteID == 0L) {
                     val note = Note(
                         title = addEditBinding?.addEditNoteTitle?.text.toString(),
                         description = addEditBinding?.addEditNoteDescription?.text.toString(),
