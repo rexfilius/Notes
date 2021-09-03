@@ -30,7 +30,6 @@ class NoteAdapter(private val onClick: (Note) -> Unit) :
         fun bind(note: Note, onClick: (Note) -> Unit) {
             binding.noteItemTitle.text = note.title
             binding.noteItemDescription.text = note.description
-            binding.noteItemPriority.text = note.priority.toString()
 
             binding.root.setOnClickListener { onClick(note) }
         }

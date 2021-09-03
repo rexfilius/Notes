@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/AndroidStudioProjects/Notes/app/src/main/res/layout/fragment_add_edit_note.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/Notes/app/src/main/res/layout/fragment_note.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/Notes/app/src/main/res/layout/notes_item.xml" value="0.67" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/PriorityNotes/app/src/main/res/layout-v21/main.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/PriorityNotes/app/src/main/res/layout/add_edit_note.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/PriorityNotes/app/src/main/res/layout/fragment_add_edit_note.xml" value="0.2037037037037037" />

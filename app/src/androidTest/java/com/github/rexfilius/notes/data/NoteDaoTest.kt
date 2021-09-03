@@ -48,7 +48,7 @@ class NoteDaoTest {
 
     @Test
     fun insertNote() = runBlockingTest {
-        val note = Note("Note 1", "Desc 1", 1, 1)
+        val note = Note("Note 1", "Desc 1", 1)
         noteDao.insert(note)
 
         val allNotes = noteDao.getAllNotes().getOrAwaitValue()
@@ -58,7 +58,7 @@ class NoteDaoTest {
 
     @Test
     fun deleteNote() = runBlockingTest {
-        val note = Note("Note 1", "Desc 1", 1, 1)
+        val note = Note("Note 1", "Desc 1", 1)
         noteDao.insert(note)
         noteDao.delete(note)
 
@@ -68,9 +68,9 @@ class NoteDaoTest {
 
     @Test
     fun getAllNotes() = runBlockingTest {
-        val note1 = Note("Note 1", "Desc 1", 1, 1)
-        val note2 = Note("Note 2", "Desc 2", 2, 2)
-        val note3 = Note("Note 3", "Desc 3", 3, 3)
+        val note1 = Note("Note 1", "Desc 1", 1)
+        val note2 = Note("Note 2", "Desc 2", 2)
+        val note3 = Note("Note 3", "Desc 3", 3)
 
         noteDao.insert(note1)
         noteDao.insert(note2)

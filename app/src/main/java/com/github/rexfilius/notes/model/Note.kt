@@ -13,8 +13,6 @@ data class Note(
 
     var description: String,
 
-    var priority: Int,
-
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0
 )

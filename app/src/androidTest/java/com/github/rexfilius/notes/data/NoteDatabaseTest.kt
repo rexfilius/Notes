@@ -59,7 +59,7 @@ class NoteDatabaseTest {
 
     @Test
     fun insertAndConfirmNoteInDatabase() = runBlockingTest {
-        val note = Note("Note 1", "Desc 1", 1, 1)
+        val note = Note("Note 1", "Desc 1", 1)
         noteDao.insert(note)
 
         val notes = noteDao.getAllNotes().getOrAwaitValue()

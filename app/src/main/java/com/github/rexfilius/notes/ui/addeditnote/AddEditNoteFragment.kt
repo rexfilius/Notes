@@ -24,16 +24,10 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
         val binding = FragmentAddEditNoteBinding.bind(view)
         addEditBinding = binding
 
-        binding.addEditNotePriority.apply {
-            minValue = 1
-            maxValue = 10
-        }
-
         viewModel.getNote(args.noteID).observe(viewLifecycleOwner, { note: Note? ->
             if (note != null) {
                 binding.addEditNoteTitle.setText(note.title)
                 binding.addEditNoteDescription.setText(note.description)
-                binding.addEditNotePriority.value = note.priority
             }
         })
 
@@ -63,7 +57,6 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
                     val note = Note(
                         title = addEditBinding?.addEditNoteTitle?.text.toString(),
                         description = addEditBinding?.addEditNoteDescription?.text.toString(),
-                        priority = addEditBinding?.addEditNotePriority?.value!!
                     )
                     viewModel.insertNote(note)
                     SAVE_NOTE.toast(requireContext())
@@ -71,8 +64,7 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
                     val note = Note(
                         title = addEditBinding?.addEditNoteTitle?.text.toString(),
                         description = addEditBinding?.addEditNoteDescription?.text.toString(),
-                        priority = addEditBinding?.addEditNotePriority?.value!!,
-                        id = args.noteID.toLong()
+                        id = args.noteID
                     )
                     viewModel.updateNote(note)
                     UPDATE_NOTE.toast(requireContext())
