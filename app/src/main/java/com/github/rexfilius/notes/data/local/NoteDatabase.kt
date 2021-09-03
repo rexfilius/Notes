@@ -1,10 +1,10 @@
-package com.github.rexfilius.prioritynotes.data.local
+package com.github.rexfilius.notes.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.github.rexfilius.prioritynotes.model.Note
+import com.github.rexfilius.notes.model.Note
 
 /**
  * This class has one method that either creates an instance of the database

@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes.ui.addeditnote
+package com.github.rexfilius.notes.ui.addeditnote
 
 import android.os.Bundle
 import android.view.*
@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.github.rexfilius.prioritynotes.R
-import com.github.rexfilius.prioritynotes.model.Note
-import com.github.rexfilius.prioritynotes.databinding.FragmentAddEditNoteBinding
-import com.github.rexfilius.prioritynotes.util.Constants.SAVE_NOTE
-import com.github.rexfilius.prioritynotes.util.Constants.UPDATE_NOTE
-import com.github.rexfilius.prioritynotes.util.toast
+import com.github.rexfilius.notes.R
+import com.github.rexfilius.notes.model.Note
+import com.github.rexfilius.notes.databinding.FragmentAddEditNoteBinding
+import com.github.rexfilius.notes.util.Constants.SAVE_NOTE
+import com.github.rexfilius.notes.util.Constants.UPDATE_NOTE
+import com.github.rexfilius.notes.util.toast
 
 class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
 

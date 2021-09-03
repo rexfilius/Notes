@@ -1,12 +1,12 @@
-package com.github.rexfilius.prioritynotes.ui.notes
+package com.github.rexfilius.notes.ui.noteslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.github.rexfilius.prioritynotes.model.Note
-import com.github.rexfilius.prioritynotes.databinding.NotesItemBinding
+import com.github.rexfilius.notes.model.Note
+import com.github.rexfilius.notes.databinding.NotesItemBinding
 
 class NoteAdapter(private val onClick: (Note) -> Unit) :
     ListAdapter<Note, NoteAdapter.NoteViewHolder>(NoteDiffUtil) {

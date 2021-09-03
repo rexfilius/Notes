@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes
+package com.github.rexfilius.notes
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

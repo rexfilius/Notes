@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes
+package com.github.rexfilius.notes
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

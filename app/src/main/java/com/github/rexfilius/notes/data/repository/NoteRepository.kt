@@ -1,8 +1,8 @@
-package com.github.rexfilius.prioritynotes.data.repository
+package com.github.rexfilius.notes.data.repository
 
 import androidx.lifecycle.LiveData
-import com.github.rexfilius.prioritynotes.data.local.NoteDatabase
-import com.github.rexfilius.prioritynotes.model.Note
+import com.github.rexfilius.notes.data.local.NoteDatabase
+import com.github.rexfilius.notes.model.Note
 
 class NoteRepository(private val noteDatabase: NoteDatabase) : Repository {
 

@@ -1,13 +1,13 @@
-package com.github.rexfilius.prioritynotes.data
+package com.github.rexfilius.notes.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.github.rexfilius.prioritynotes.data.local.NoteDao
-import com.github.rexfilius.prioritynotes.data.local.NoteDatabase
-import com.github.rexfilius.prioritynotes.model.Note
-import com.github.rexfilius.prioritynotes.getOrAwaitValue
+import com.github.rexfilius.notes.data.local.NoteDao
+import com.github.rexfilius.notes.data.local.NoteDatabase
+import com.github.rexfilius.notes.model.Note
+import com.github.rexfilius.notes.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

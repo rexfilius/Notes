@@ -1,8 +1,8 @@
-package com.github.rexfilius.prioritynotes.data.local
+package com.github.rexfilius.notes.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.github.rexfilius.prioritynotes.model.Note
+import com.github.rexfilius.notes.model.Note
 
 @Dao
 interface NoteDao {

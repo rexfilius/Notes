@@ -1,7 +1,7 @@
-package com.github.rexfilius.prioritynotes.data.repository
+package com.github.rexfilius.notes.data.repository
 
 import androidx.lifecycle.LiveData
-import com.github.rexfilius.prioritynotes.model.Note
+import com.github.rexfilius.notes.model.Note
 
 interface Repository {
 

@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes.util
+package com.github.rexfilius.notes.util
 
 import android.content.Context
 import android.widget.Toast

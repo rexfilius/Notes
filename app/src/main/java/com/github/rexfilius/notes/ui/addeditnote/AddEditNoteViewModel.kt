@@ -1,11 +1,11 @@
-package com.github.rexfilius.prioritynotes.ui.addeditnote
+package com.github.rexfilius.notes.ui.addeditnote
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.rexfilius.prioritynotes.model.Note
-import com.github.rexfilius.prioritynotes.data.local.NoteDatabase
-import com.github.rexfilius.prioritynotes.data.repository.NoteRepository
+import com.github.rexfilius.notes.model.Note
+import com.github.rexfilius.notes.data.local.NoteDatabase
+import com.github.rexfilius.notes.data.repository.NoteRepository
 import kotlinx.coroutines.launch
 
 class AddEditNoteViewModel(application: Application) : AndroidViewModel(application) {

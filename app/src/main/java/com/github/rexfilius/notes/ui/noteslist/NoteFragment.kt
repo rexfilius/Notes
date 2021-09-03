@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes.ui.notes
+package com.github.rexfilius.notes.ui.noteslist
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.rexfilius.prioritynotes.R
-import com.github.rexfilius.prioritynotes.model.Note
-import com.github.rexfilius.prioritynotes.databinding.FragmentNoteBinding
-import com.github.rexfilius.prioritynotes.util.Constants.DELETE_NOTE
-import com.github.rexfilius.prioritynotes.util.toast
+import com.github.rexfilius.notes.R
+import com.github.rexfilius.notes.model.Note
+import com.github.rexfilius.notes.databinding.FragmentNoteBinding
+import com.github.rexfilius.notes.util.Constants.DELETE_NOTE
+import com.github.rexfilius.notes.util.toast
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
 

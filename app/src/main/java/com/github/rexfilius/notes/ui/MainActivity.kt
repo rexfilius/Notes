@@ -1,8 +1,8 @@
-package com.github.rexfilius.prioritynotes.ui
+package com.github.rexfilius.notes.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.github.rexfilius.prioritynotes.databinding.ActivityMainBinding
+import com.github.rexfilius.notes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

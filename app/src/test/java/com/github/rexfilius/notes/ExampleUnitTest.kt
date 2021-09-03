@@ -1,4 +1,4 @@
-package com.github.rexfilius.prioritynotes
+package com.github.rexfilius.notes
 
 import org.junit.Test
 
