@@ -1,4 +1,4 @@
-package com.github.rexfilius.notes.data.local
+package com.github.rexfilius.notes.data.source.local
 
 import android.content.Context
 import androidx.room.Database
@@ -13,30 +13,30 @@ import com.github.rexfilius.notes.model.Note
  * and set exportSchema to false so as  not to keep schema version history backups
  */
 @Database(entities = [Note::class], version = 5, exportSchema = false)
-abstract class NoteDatabase : RoomDatabase() {
+abstract class NotesDatabase : RoomDatabase() {
 
-    abstract val noteDao: NoteDao
+    abstract val notesDao: NotesDao
 
     companion object {
 
         /* the value of a Volatile variable will never be cached, and all reads and writes
         *  will be done to and from the main memory */
         @Volatile
-        private var INSTANCE: NoteDatabase? = null
+        private var INSTANCE: NotesDatabase? = null
 
         /**
          * wrapping the code with synchronized means that only one thread of execution
          * at a time can enter this block of code, which makes sure the database
          * only gets initialized once
          */
-        fun getInstance(context: Context): NoteDatabase {
+        fun getInstance(context: Context): NotesDatabase {
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance =
                         Room.databaseBuilder(
                             context.applicationContext,
-                            NoteDatabase::class.java,
+                            NotesDatabase::class.java,
                             "notes_database"
                         ).fallbackToDestructiveMigration().build()
                     INSTANCE = instance

@@ -4,13 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.rexfilius.notes.model.Note
-import com.github.rexfilius.notes.data.local.NoteDatabase
-import com.github.rexfilius.notes.data.repository.NoteRepository
+import com.github.rexfilius.notes.data.source.local.NotesDatabase
+import com.github.rexfilius.notes.data.source.NotesRepository
 import kotlinx.coroutines.launch
 
 class AddEditNoteViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = NoteRepository(NoteDatabase.getInstance(application))
+    private val repository = NotesRepository(NotesDatabase.getInstance(application))
 
     fun insertNote(note: Note) = viewModelScope.launch { repository.insertInDB(note) }
 

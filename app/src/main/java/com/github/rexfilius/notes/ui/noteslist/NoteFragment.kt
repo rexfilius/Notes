@@ -17,10 +17,17 @@ import com.github.rexfilius.notes.util.toast
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
 
-    private val viewModel: NoteViewModel by viewModels()
+    private val viewModel: NotesViewModel by viewModels()
     private lateinit var noteAdapter: NoteAdapter
     private var noteBinding: FragmentNoteBinding? = null
     // private lateinit var itemTouchHelper: ItemTouchHelper
+
+    /**
+     * private val viewModel by viewModels<StatisticsViewModel> {
+    StatisticsViewModelFactory(
+    (requireContext().applicationContext as TodoApplication).taskRepository
+    )
+    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

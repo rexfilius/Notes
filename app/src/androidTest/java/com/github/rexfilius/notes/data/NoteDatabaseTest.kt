@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.github.rexfilius.notes.data.local.NoteDao
-import com.github.rexfilius.notes.data.local.NoteDatabase
+import com.github.rexfilius.notes.data.source.local.NotesDao
+import com.github.rexfilius.notes.data.source.local.NotesDatabase
 import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
@@ -32,8 +32,8 @@ class NoteDatabaseTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var noteDao: NoteDao
-    private lateinit var noteDatabase: NoteDatabase
+    private lateinit var notesDao: NotesDao
+    private lateinit var notesDatabase: NotesDatabase
 
     /**
      * In this function that creates a database, an in-memory database is used because the
@@ -44,25 +44,25 @@ class NoteDatabaseTest {
     fun createDatabase() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-        noteDatabase =
-            Room.inMemoryDatabaseBuilder(context, NoteDatabase::class.java)
+        notesDatabase =
+            Room.inMemoryDatabaseBuilder(context, NotesDatabase::class.java)
                 .allowMainThreadQueries()
                 .build()
-        noteDao = noteDatabase.noteDao
+        notesDao = notesDatabase.notesDao
     }
 
     @After
     @Throws(IOException::class)
     fun closeDatabase() {
-        noteDatabase.close()
+        notesDatabase.close()
     }
 
     @Test
     fun insertAndConfirmNoteInDatabase() = runBlockingTest {
         val note = Note("Note 1", "Desc 1", 1)
-        noteDao.insert(note)
+        notesDao.insert(note)
 
-        val notes = noteDao.getAllNotes().getOrAwaitValue()
+        val notes = notesDao.getAllNotes().getOrAwaitValue()
         assertThat(notes).contains(note)
     }
 }

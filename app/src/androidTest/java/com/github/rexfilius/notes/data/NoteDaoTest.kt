@@ -5,8 +5,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.github.rexfilius.notes.data.local.NoteDao
-import com.github.rexfilius.notes.data.local.NoteDatabase
+import com.github.rexfilius.notes.data.source.local.NotesDao
+import com.github.rexfilius.notes.data.source.local.NotesDatabase
 import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
@@ -27,31 +27,31 @@ class NoteDaoTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var noteDatabase: NoteDatabase
-    private lateinit var noteDao: NoteDao
+    private lateinit var notesDatabase: NotesDatabase
+    private lateinit var notesDao: NotesDao
 
     @Before
     fun createDatabase() {
-        noteDatabase =
+        notesDatabase =
             Room.inMemoryDatabaseBuilder(
                 ApplicationProvider.getApplicationContext(),
-                NoteDatabase::class.java
+                NotesDatabase::class.java
             ).allowMainThreadQueries()
                 .build()
-        noteDao = noteDatabase.noteDao
+        notesDao = notesDatabase.notesDao
     }
 
     @After
     fun closeDatabase() {
-        noteDatabase.close()
+        notesDatabase.close()
     }
 
     @Test
     fun insertNote() = runBlockingTest {
         val note = Note("Note 1", "Desc 1", 1)
-        noteDao.insert(note)
+        notesDao.insert(note)
 
-        val allNotes = noteDao.getAllNotes().getOrAwaitValue()
+        val allNotes = notesDao.getAllNotes().getOrAwaitValue()
 
         assertThat(allNotes).contains(note)
     }
@@ -59,10 +59,10 @@ class NoteDaoTest {
     @Test
     fun deleteNote() = runBlockingTest {
         val note = Note("Note 1", "Desc 1", 1)
-        noteDao.insert(note)
-        noteDao.delete(note)
+        notesDao.insert(note)
+        notesDao.delete(note)
 
-        val allNotes = noteDao.getAllNotes().getOrAwaitValue()
+        val allNotes = notesDao.getAllNotes().getOrAwaitValue()
         assertThat(allNotes).doesNotContain(note)
     }
 
@@ -72,11 +72,11 @@ class NoteDaoTest {
         val note2 = Note("Note 2", "Desc 2", 2)
         val note3 = Note("Note 3", "Desc 3", 3)
 
-        noteDao.insert(note1)
-        noteDao.insert(note2)
-        noteDao.insert(note3)
+        notesDao.insert(note1)
+        notesDao.insert(note2)
+        notesDao.insert(note3)
 
-        val allNotes = noteDao.getAllNotes().getOrAwaitValue()
+        val allNotes = notesDao.getAllNotes().getOrAwaitValue()
 
         assertThat(allNotes).containsExactly(note1, note2, note3)
     }

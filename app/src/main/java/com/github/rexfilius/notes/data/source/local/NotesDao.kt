@@ -1,11 +1,11 @@
-package com.github.rexfilius.notes.data.local
+package com.github.rexfilius.notes.data.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.github.rexfilius.notes.model.Note
 
 @Dao
-interface NoteDao {
+interface NotesDao {
 
     @Insert
     suspend fun insert(note: Note)
