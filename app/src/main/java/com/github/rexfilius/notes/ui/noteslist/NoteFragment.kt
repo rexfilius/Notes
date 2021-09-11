@@ -12,22 +12,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.rexfilius.notes.R
 import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.databinding.FragmentNoteBinding
+import com.github.rexfilius.notes.di.NotesApplication
 import com.github.rexfilius.notes.util.Constants.DELETE_NOTE
 import com.github.rexfilius.notes.util.toast
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
 
-    private val viewModel: NotesViewModel by viewModels()
     private lateinit var noteAdapter: NoteAdapter
     private var noteBinding: FragmentNoteBinding? = null
     // private lateinit var itemTouchHelper: ItemTouchHelper
 
-    /**
-     * private val viewModel by viewModels<StatisticsViewModel> {
-    StatisticsViewModelFactory(
-    (requireContext().applicationContext as TodoApplication).taskRepository
-    )
-    }*/
+    private val viewModel by viewModels<NotesViewModel> {
+        NotesViewModelFactory(
+            (requireContext().applicationContext as NotesApplication).repository
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

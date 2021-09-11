@@ -7,20 +7,27 @@ import androidx.room.RoomDatabase
 import com.github.rexfilius.notes.model.Note
 
 /**
- * This class has one method that either creates an instance of the database
+ * - This class has one method that either creates an instance of the database
  * if the database doesn't exist, or returns a reference to an existing database
- * NOTE: whenever you change the schema, you have to increase the version number,
- * and set exportSchema to false so as  not to keep schema version history backups
+ * - NOTE: whenever you change the schema, you have to increase the version number,
+ * and set exportSchema to false so as  not to keep schema version history backups.
+ * exportSchema has to be set to true for apps in production
  */
 @Database(entities = [Note::class], version = 5, exportSchema = false)
 abstract class NotesDatabase : RoomDatabase() {
 
     abstract val notesDao: NotesDao
 
-    companion object {
+    /**
+     * With ServiceLocator pattern for dependency injection, this block of code
+     * is no longer needed
+     */
+    /*companion object {
 
-        /* the value of a Volatile variable will never be cached, and all reads and writes
-        *  will be done to and from the main memory */
+        /**
+         * the value of a Volatile variable will never be cached, and all reads and
+         * write will be done to and from the main memory
+         */
         @Volatile
         private var INSTANCE: NotesDatabase? = null
 
@@ -45,6 +52,6 @@ abstract class NotesDatabase : RoomDatabase() {
             }
         }
 
-    }
+    }*/
 
 }

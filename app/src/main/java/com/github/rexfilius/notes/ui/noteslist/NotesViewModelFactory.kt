@@ -9,7 +9,7 @@ class NotesViewModelFactory(
     private val repository: Repository
 ) : ViewModelProvider.NewInstanceFactory() {
 
-//    override fun <T : ViewModel> create(modelClass: Class<T>) =
-//        (NotesViewModel(repository) as T)
+    override fun <T : ViewModel> create(modelClass: Class<T>) =
+        (NotesViewModel(repository) as T)
 
 }
