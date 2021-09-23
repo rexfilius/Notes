@@ -57,33 +57,35 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-
             R.id.menu_save_note -> {
-                if (args.noteID == 0L) {
-                    val note = Note(
-                        title = addEditBinding?.addEditNoteTitle?.text.toString(),
-                        description = addEditBinding?.addEditNoteDescription?.text.toString(),
-                    )
-                    viewModel.insertNote(note)
-                    SAVE_NOTE.toast(requireContext())
-                } else {
-                    val note = Note(
-                        title = addEditBinding?.addEditNoteTitle?.text.toString(),
-                        description = addEditBinding?.addEditNoteDescription?.text.toString(),
-                        id = args.noteID
-                    )
-                    viewModel.updateNote(note)
-                    UPDATE_NOTE.toast(requireContext())
-                }
-
+                saveOrUpdateNote()
                 this.findNavController().navigate(
                     AddEditNoteFragmentDirections.actionAddEditNoteFragmentToNotesFragment()
                 )
                 return true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun saveOrUpdateNote() {
+        if (args.noteID == 0L) {
+            val note = getNote()
+            viewModel.insertNote(note)
+            SAVE_NOTE.toast(requireContext())
+        } else {
+            val note = getNote()
+            viewModel.updateNote(note)
+            UPDATE_NOTE.toast(requireContext())
+        }
+    }
+
+    private fun getNote(): Note {
+        return Note(
+            title = addEditBinding?.addEditNoteTitle?.text.toString(),
+            description = addEditBinding?.addEditNoteDescription?.text.toString(),
+            id = args.noteID
+        )
     }
 
 }

@@ -50,7 +50,9 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
 
         binding.noteFAB.setOnClickListener {
             this.findNavController().navigate(
-                NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment()
+                NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
+                    title = resources.getString(R.string.add_note)
+                )
             )
         }
 
@@ -89,7 +91,8 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
     private fun noteAdapterOnClick(note: Note) {
         this.findNavController().navigate(
             NoteFragmentDirections.actionNotesFragmentToAddEditNoteFragment(
-                note.id
+                noteID = note.id,
+                title = resources.getString(R.string.edit_note)
             )
         )
     }
