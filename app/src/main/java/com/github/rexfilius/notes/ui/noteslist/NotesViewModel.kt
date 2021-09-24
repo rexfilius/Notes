@@ -14,6 +14,8 @@ class NotesViewModel(
 
     fun deleteAllNotes() = viewModelScope.launch { repository.deleteAllInDB() }
 
+    fun insertNote(note: Note) = viewModelScope.launch { repository.insertInDB(note) }
+
     fun getAllNotes() = repository.getAllNotesInDB()
 
 }
