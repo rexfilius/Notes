@@ -11,4 +11,10 @@
     <string name="notes">Notes</string>
     <string name="add_edit">Add/Edit</string>
     <string name="undo_delete">Undo</string>
+
+    <!--For the Alert Dialog-->
+    <string name="alert_title">This action cannot be undone.</string>
+    <string name="alert_text">Are you sure you want to delete all notes?</string>
+    <string name="alert_yes">Yes</string>
+    <string name="alert_no">No</string>
 </resources>

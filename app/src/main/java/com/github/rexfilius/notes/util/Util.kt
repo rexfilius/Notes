@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.Toast
 
 object Constants {
-    const val DELETE_ALL_NOTES = "All Notes deleted"
+    const val DELETE_ALL_NOTES = "All notes deleted"
     const val DELETE_NOTE = "Note deleted"
     const val SAVE_NOTE = "Note saved"
     const val UPDATE_NOTE = "Note updated"

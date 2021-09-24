@@ -14,20 +14,19 @@ import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.rexfilius.notes.R
-import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.databinding.FragmentNoteBinding
 import com.github.rexfilius.notes.di.NotesApplication
-import com.github.rexfilius.notes.util.Constants
+import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.util.Constants.DELETE_ALL_NOTES
 import com.github.rexfilius.notes.util.Constants.DELETE_NOTE
 import com.github.rexfilius.notes.util.toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
 
     private lateinit var noteAdapter: NoteAdapter
     private var noteBinding: FragmentNoteBinding? = null
-    private lateinit var itemTouchHelper: ItemTouchHelper
 
     private val viewModel by viewModels<NotesViewModel> {
         NotesViewModelFactory(
@@ -66,7 +65,6 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         // notify fragments to populate options-menu
         setHasOptionsMenu(true)
 
-        // function to delete a note with a swipe action
         itemTouchHelper().attachToRecyclerView(binding.noteRecyclerView)
     }
 
@@ -82,8 +80,7 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_delete_all -> {
-                viewModel.deleteAllNotes()
-                DELETE_ALL_NOTES.toast(requireContext())
+                showDeleteDialog()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -104,8 +101,9 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         )
     }
 
+    /**Function to delete a note with a swipe action*/
     private fun itemTouchHelper(): ItemTouchHelper {
-        itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             0, LEFT or RIGHT
         ) {
             override fun onMove(
@@ -129,6 +127,21 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
             }
         })
         return itemTouchHelper
+    }
+
+    /**Alert Dialog to confirm deletion of all notes*/
+    private fun showDeleteDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.alert_title)
+            .setMessage(R.string.alert_text)
+            .setNegativeButton(R.string.alert_no) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(R.string.alert_yes) { _, _ ->
+                viewModel.deleteAllNotes()
+                DELETE_ALL_NOTES.toast(requireContext())
+            }
+            .show()
     }
 
 }
