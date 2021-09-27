@@ -15,24 +15,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.rexfilius.notes.R
 import com.github.rexfilius.notes.databinding.FragmentNoteBinding
-import com.github.rexfilius.notes.di.NotesApplication
 import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.util.Constants.DELETE_ALL_NOTES
 import com.github.rexfilius.notes.util.Constants.DELETE_NOTE
 import com.github.rexfilius.notes.util.toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteFragment : Fragment(R.layout.fragment_note) {
 
     private lateinit var noteAdapter: NoteAdapter
     private var noteBinding: FragmentNoteBinding? = null
-
-    private val viewModel by viewModels<NotesViewModel> {
-        NotesViewModelFactory(
-            (requireContext().applicationContext as NotesApplication).repository
-        )
-    }
+    private val viewModel: NotesViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

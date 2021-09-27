@@ -1,29 +1,28 @@
 package com.github.rexfilius.notes.ui.addeditnote
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.rexfilius.notes.R
-import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.databinding.FragmentAddEditNoteBinding
-import com.github.rexfilius.notes.di.NotesApplication
+import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.util.Constants.SAVE_NOTE
 import com.github.rexfilius.notes.util.Constants.UPDATE_NOTE
 import com.github.rexfilius.notes.util.toast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
 
     private var addEditBinding: FragmentAddEditNoteBinding? = null
     private val args: AddEditNoteFragmentArgs by navArgs()
-
-    private val viewModel by viewModels<AddEditNoteViewModel> {
-        AddEditNoteViewModelFactory(
-            (requireContext().applicationContext as NotesApplication).repository
-        )
-    }
+    private val viewModel: AddEditNoteViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

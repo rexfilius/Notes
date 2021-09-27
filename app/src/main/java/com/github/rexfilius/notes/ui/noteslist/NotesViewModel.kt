@@ -1,12 +1,17 @@
 package com.github.rexfilius.notes.ui.noteslist
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.rexfilius.notes.data.source.Repository
 import com.github.rexfilius.notes.model.Note
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotesViewModel(
+@HiltViewModel
+class NotesViewModel @Inject constructor(
+    val savedStateHandle: SavedStateHandle,
     private val repository: Repository
 ) : ViewModel() {
 

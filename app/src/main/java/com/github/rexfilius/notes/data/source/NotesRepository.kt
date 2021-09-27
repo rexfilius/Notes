@@ -2,32 +2,32 @@ package com.github.rexfilius.notes.data.source
 
 import androidx.lifecycle.LiveData
 import com.github.rexfilius.notes.model.Note
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import com.github.rexfilius.notes.util.DispatcherProvider
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class NotesRepository(
+class NotesRepository @Inject constructor(
     private val localDataSource: DataSource,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val dispatcher: DispatcherProvider
 ) : Repository {
 
     override suspend fun insertInDB(note: Note) =
-        withContext(dispatcher) {
+        withContext(dispatcher.io) {
             localDataSource.insertInDB(note)
         }
 
     override suspend fun updateInDB(note: Note) =
-        withContext(dispatcher) {
+        withContext(dispatcher.io) {
             localDataSource.updateInDB(note)
         }
 
     override suspend fun deleteInDB(note: Note) =
-        withContext(dispatcher) {
+        withContext(dispatcher.io) {
             localDataSource.deleteInDB(note)
         }
 
     override suspend fun deleteAllInDB() =
-        withContext(dispatcher) {
+        withContext(dispatcher.io) {
             localDataSource.deleteAllNotesInDB()
         }
 

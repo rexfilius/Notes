@@ -1,8 +1,6 @@
 package com.github.rexfilius.notes.data.source.local
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.github.rexfilius.notes.model.Note
 
@@ -17,41 +15,5 @@ import com.github.rexfilius.notes.model.Note
 abstract class NotesDatabase : RoomDatabase() {
 
     abstract val notesDao: NotesDao
-
-    /**
-     * With ServiceLocator pattern for dependency injection, this block of code
-     * is no longer needed
-     */
-    /*companion object {
-
-        /**
-         * the value of a Volatile variable will never be cached, and all reads and
-         * write will be done to and from the main memory
-         */
-        @Volatile
-        private var INSTANCE: NotesDatabase? = null
-
-        /**
-         * wrapping the code with synchronized means that only one thread of execution
-         * at a time can enter this block of code, which makes sure the database
-         * only gets initialized once
-         */
-        fun getInstance(context: Context): NotesDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-                if (instance == null) {
-                    instance =
-                        Room.databaseBuilder(
-                            context.applicationContext,
-                            NotesDatabase::class.java,
-                            "notes_database"
-                        ).fallbackToDestructiveMigration().build()
-                    INSTANCE = instance
-                }
-                return instance
-            }
-        }
-
-    }*/
 
 }
