@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.github.rexfilius.notes.R
 import com.github.rexfilius.notes.databinding.FragmentAddEditNoteBinding
 import com.github.rexfilius.notes.model.Note
+import com.github.rexfilius.notes.util.Constants.EMPTY_NOTE
 import com.github.rexfilius.notes.util.Constants.SAVE_NOTE
 import com.github.rexfilius.notes.util.Constants.UPDATE_NOTE
 import com.github.rexfilius.notes.util.toast
@@ -70,13 +71,22 @@ class AddEditNoteFragment : Fragment(R.layout.fragment_add_edit_note) {
     private fun saveOrUpdateNote() {
         if (args.noteID == 0L) {
             val note = getNote()
-            viewModel.insertNote(note)
-            SAVE_NOTE.toast(requireContext())
+            if (noteIsEmpty()) {
+                EMPTY_NOTE.toast(requireContext())
+            } else {
+                viewModel.insertNote(note)
+                SAVE_NOTE.toast(requireContext())
+            }
         } else {
             val note = getNote()
             viewModel.updateNote(note)
             UPDATE_NOTE.toast(requireContext())
         }
+    }
+
+    private fun noteIsEmpty(): Boolean {
+        return addEditBinding?.addEditNoteTitle?.text?.isEmpty() == true ||
+                addEditBinding?.addEditNoteDescription?.text?.isEmpty() == true
     }
 
     private fun getNote(): Note {

@@ -8,6 +8,7 @@ object Constants {
     const val DELETE_NOTE = "Note deleted"
     const val SAVE_NOTE = "Note saved"
     const val UPDATE_NOTE = "Note updated"
+    const val EMPTY_NOTE = "Note not saved. It must have a title and description"
 }
 
 fun Any.toast(context: Context, duration: Int = Toast.LENGTH_LONG): Toast {
