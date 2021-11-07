@@ -3,7 +3,7 @@ package com.github.rexfilius.notes.ui.addeditnote
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.rexfilius.notes.data.source.Repository
+import com.github.rexfilius.notes.data.repository.Repository
 import com.github.rexfilius.notes.model.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -1,6 +1,7 @@
-package com.github.rexfilius.notes.data.source
+package com.github.rexfilius.notes.data.repository
 
 import androidx.lifecycle.LiveData
+import com.github.rexfilius.notes.data.source.local.DataSource
 import com.github.rexfilius.notes.model.Note
 import com.github.rexfilius.notes.util.DispatcherProvider
 import kotlinx.coroutines.withContext

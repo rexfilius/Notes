@@ -1,4 +1,4 @@
-package com.github.rexfilius.notes.data.source
+package com.github.rexfilius.notes.data.repository
 
 import androidx.lifecycle.LiveData
 import com.github.rexfilius.notes.model.Note

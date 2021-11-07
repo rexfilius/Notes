@@ -2,9 +2,9 @@ package com.github.rexfilius.notes.di
 
 import android.content.Context
 import androidx.room.Room
-import com.github.rexfilius.notes.data.source.DataSource
-import com.github.rexfilius.notes.data.source.NotesRepository
-import com.github.rexfilius.notes.data.source.Repository
+import com.github.rexfilius.notes.data.source.local.DataSource
+import com.github.rexfilius.notes.data.repository.NotesRepository
+import com.github.rexfilius.notes.data.repository.Repository
 import com.github.rexfilius.notes.data.source.local.LocalDataSource
 import com.github.rexfilius.notes.data.source.local.NotesDao
 import com.github.rexfilius.notes.data.source.local.NotesDatabase
