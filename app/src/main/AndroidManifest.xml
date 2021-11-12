@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PriorityNotes">
-        <activity android:name="com.github.rexfilius.notes.ui.MainActivity">
+        <activity android:name="com.github.rexfilius.notes.ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
