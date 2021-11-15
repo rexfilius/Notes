@@ -1,4 +1,4 @@
-package com.github.rexfilius.notes.data.repository.source.local
+package com.github.rexfilius.notes.data.source.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
