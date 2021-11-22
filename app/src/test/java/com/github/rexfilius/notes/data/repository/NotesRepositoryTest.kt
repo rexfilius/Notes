@@ -15,6 +15,9 @@ import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
+/**
+ * Test did not run
+ */
 @ExperimentalCoroutinesApi
 class NotesRepositoryTest {
 

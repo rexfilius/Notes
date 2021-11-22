@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
-    val savedStateHandle: SavedStateHandle,
+    val savedStateHandle: SavedStateHandle?,
     private val repository: Repository
 ) : ViewModel() {
 
